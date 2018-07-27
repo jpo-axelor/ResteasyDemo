@@ -6,6 +6,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/mystyle.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>View JSP</title>
 </head>
@@ -17,15 +20,16 @@
 		%>
 
 		<FORM ACTION="<%=request.getContextPath()%>/contact/update"
-			METHOD="POST">
-<!-- 			Contact ID  -->
+			METHOD="POST" >
+			Contact Id :<%out.print(" "+ c.getId());%><br><br>
+			<!-- 			Contact ID  -->
 			<INPUT TYPE="hidden" NAME="id" VALUE="<%=c.getId()%>"> Name:<INPUT
 				TYPE="TEXT" NAME="name" VALUE="<%=c.getName()%>"> <br>
 			<br> Phone No:<INPUT TYPE="TEXT" NAME="phoneNo"
 				value="<%=c.getPhoneNo()%>" /> <br> <br> <INPUT
 				TYPE="SUBMIT" VALUE="SUBMIT" />
-				
-			
+
+
 		</FORM>
 	</center>
 

@@ -6,8 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/mystyle.css">
+	<link rel="stylesheet" type="text/css"
+		href="<%=request.getContextPath()%>/mystyle.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ALL Contacts</title>
@@ -15,9 +15,9 @@
 <body>
 	<center>
 		<FORM ACTION="<%=request.getContextPath()%>/contact/get/name"
-			METHOD="POST">
+			METHOD="GET">
 			<fieldset>
-				<b>Search By:</b><br>
+				<b>Search :</b><br>
 				Name:<INPUT TYPE="text" NAME="searchText"> <br> <br>
 				<input type="submit" value="Submit">
 			</fieldset>

@@ -5,6 +5,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.junit.Before;
 import org.junit.Ignore;
 import com.axelor.RestDemo.db.Contact;
 
@@ -13,7 +14,7 @@ public class Test {
   WebTarget target = client.target("http://localhost:8080/ResteasyDemo/contact");
 
 //   @Before
-//  @Ignore
+  @Ignore
   @org.junit.Test
   public void testCreateContact() {
     WebTarget createContactTarget = target.path("/createContact");
@@ -44,8 +45,8 @@ public class Test {
     System.out.println("testReadContactById()-->" + value + "\n\n");
     response.close();
   }
-
-  @Ignore
+   @Before
+//  @Ignore
   @org.junit.Test
   public void testUpdateContact() {
     WebTarget updateContactTarget = target.path("/updateContact");

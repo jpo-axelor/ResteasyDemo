@@ -9,7 +9,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.plugins.providers.html.View;
 import com.axelor.RestDemo.db.Contact;
 import com.google.inject.Inject;
@@ -22,7 +25,7 @@ public class ContactResources {
 
   @POST
   @Path("/create")
-//  @Produces(MediaType.APPLICATION_JSON)
+  // @Produces(MediaType.APPLICATION_JSON)
   public void createContact(@Context HttpServletResponse response,
       @Context HttpServletRequest request, @FormParam(value = "name") String name,
       @FormParam(value = "phoneNo") String phoneNo) throws IOException {
@@ -30,14 +33,15 @@ public class ContactResources {
     Contact c = new Contact(name, phoneNo);
     csi.createContact(c);
     response.sendRedirect(request.getContextPath() + "/contact/get");
+
   }
 
   @GET
   @Path("/get")
-//  @Produces(MediaType.APPLICATION_JSON)
-  public View readContacts(@Context HttpServletRequest request) {
+  // @Produces(MediaType.APPLICATION_JSON)
+  public View readContacts() {
     List<Contact> list = csi.readContacts();
-    return new View("/listView.jsp", list, "contactList");
+    return new View("/index.jsp", list, "contactList");
   }
 
   @GET
@@ -49,18 +53,17 @@ public class ContactResources {
     return new View("/view.jsp", c, "ContactObj");
   }
 
-  @POST
-  @Path("/get/name")
-//  @Produces(MediaType.APPLICATION_JSON)
+  @GET
+  @Path("/get/name/")
   public View readContactByName(@Context HttpServletResponse response,
-      @Context HttpServletRequest request) {
-    String name = request.getParameter("searchText");
-    List<Contact> list = csi.readContactByName(name);
-    return new View("/listView.jsp", list, "contactList");
+      @Context HttpServletRequest request, @QueryParam(value = "searchText") String searchText) {
+    List<Contact> list = csi.readContactByName(searchText);
+    return new View("/index.jsp", list, "contactList");
   }
 
   @POST
   @Path("/update")
+  @Produces(MediaType.APPLICATION_JSON)
   public void updateContact(@Context HttpServletResponse response,
       @Context HttpServletRequest request, @FormParam(value = "id") Integer id,
       @FormParam(value = "name") String name, @FormParam(value = "phoneNo") String phoneNo)
