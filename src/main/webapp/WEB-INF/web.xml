@@ -11,11 +11,9 @@
 	</listener>
 
 	<filter>
-        <filter-name>Resteasy</filter-name>
-        <filter-class>
-            org.jboss.resteasy.plugins.server.servlet.FilterDispatcher
-        </filter-class>
-    </filter>   
+        	<filter-name>Resteasy</filter-name>
+        	<filter-class>org.jboss.resteasy.plugins.server.servlet.FilterDispatcher</filter-class>
+    	</filter>   
     
 	<filter-mapping>
 		<filter-name>Resteasy</filter-name>

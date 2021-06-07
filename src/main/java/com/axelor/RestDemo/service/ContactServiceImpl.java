@@ -6,8 +6,10 @@ import javax.persistence.TypedQuery;
 import com.axelor.RestDemo.db.Contact;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 
+@Singleton
 public class ContactServiceImpl implements ContactService {
 
   @Inject
@@ -16,7 +18,6 @@ public class ContactServiceImpl implements ContactService {
   @Transactional
   @Override
   public boolean createContact(Contact c) {
-    System.out.println("For Checking name :" + c.getName());
     EntityManager em = emp.get();
     em.persist(c);
     return true;
@@ -40,11 +41,11 @@ public class ContactServiceImpl implements ContactService {
 
   @Transactional
   @Override
-  public boolean updateContact(Contact c) {
+  public boolean updateContact(Contact c, int id) {
     EntityManager em = emp.get();
     Contact contact = em.find(Contact.class, c.getId());
     contact.setName(c.getName());
-    contact.setPhoneNo(c.getPhoneNo());
+    contact.setPhone(c.getPhone());
     return true;
   }
 
@@ -58,16 +59,14 @@ public class ContactServiceImpl implements ContactService {
   }
 
   @Transactional
-  @Override
+  @Override          //Search Contact by name
   public List<Contact> readContactByName(String name) {
-    System.out.println("CSImpl method() called :"+"name" + name);
+    System.out.println("CSImpl method() called :" + "name" + name);
     EntityManager em = emp.get();
-    TypedQuery<Contact> query =
-        em.createQuery("SELECT c FROM Contact c where Lower(c.name) LIKE '%" + name.toLowerCase() + "%'", Contact.class);
+    TypedQuery<Contact> query = em.createQuery(
+        "SELECT c FROM Contact c where Lower(c.name) LIKE '%" + name.toLowerCase() + "%'",
+        Contact.class);
     List<Contact> contacts = query.getResultList();
     return contacts;
   }
-
-
-
 }

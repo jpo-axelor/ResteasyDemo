@@ -7,6 +7,8 @@ public class ContactModule extends AbstractModule{
   protected void configure() {
 
     bind(ContactResources.class);
+    bind(PhoneResources.class);
+    bind(PhoneService.class).to(PhoneServiceImpl.class);
     bind(ContactService.class).to(ContactServiceImpl.class);
   }
   

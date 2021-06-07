@@ -8,8 +8,9 @@ public interface ContactService {
   public boolean createContact(Contact c) ;
   public List<Contact> readContacts() ;
   public Contact readContactById(Integer id) ;
-  public boolean updateContact(Contact c) ;
+  public boolean updateContact(Contact c, int id) ;
   public boolean deleteContactById(Integer id);
   public List<Contact> readContactByName(String name);
+
   
 }
